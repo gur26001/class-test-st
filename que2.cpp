@@ -1,11 +1,10 @@
-#include <iostream>
-#include <map>
-#include <vector>
-#include <algorithm>
-#include <pair>
+#include <bits/stdc++.h>
 
 using namespace std;
 
+bool cmp(pair<int,int> a, pair<int,int> b){
+    return a.second<b.second;
+}
 void printRepeated(int arr[], int n)
 {
     map<int, int> freq; // MAKES A MAP DS, FOR STORING CORRESPONDING FREQUENCIES OF EACH ARRAY ELEMENT
@@ -15,19 +14,19 @@ void printRepeated(int arr[], int n)
         freq[arr[i]] += 1;
     }
 
-    vector<pair<int,int> v; // MAKES A VECTOR DS, FOR STORING REPEATED NUMBERS
+    vector<pair<int,int>> v; // MAKES A VECTOR DS, FOR STORING REPEATED NUMBERS
     for (auto i : freq)
     {
         if (i.second >1)
         { // CHECKS IF FREQS OF EACH ELEMENT IS MORE THAN ONE, IF YES THEN STORE IT IN VECTOR ELSE IGNORE
-            v.push_back(i.first,i.se);
+            v.push_back(make_pair(i.first,i.second));
         }
     }
 
-    cout << "Non-repeated numbers are: ";
-    for (int i = v.size() - 1; i >= 0; i--)
-    {
-        cout << v[i] << " "; // PRINTS ELEMENTS IN DESCENDING ORDER, AS PER MENTIONED QUE.
+    sort(begin(v),end(v),cmp);
+    
+    for(auto i :v){
+        cout<<i.first<<" "<<i.second;
     }
 }
 
